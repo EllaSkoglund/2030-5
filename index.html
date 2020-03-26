@@ -1,0 +1,97 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<title>CodePen - 2030-5 new</title>
+<style>
+body{
+  background:lightgrey;
+  }
+#humanbody{
+  position:absolute;
+  left:0px;
+  top:0px;
+}
+input {
+  width:140px;
+  height:15px;
+}
+
+.correct{
+  background:lime;
+}
+
+.incorrect{
+  background:red;
+}
+
+audio{
+  position:absolute;
+  top:70px;
+}
+</style>
+</head>
+<body translate="no">
+<img id="humanbody" src="https://i.pinimg.com/originals/1f/1d/7d/1f1d7d5f82d54286f17fae1095937b64.png" alt="human body" />
+<audio id="myAudio" controls>
+<source src="https://ellaskoglund.github.io/2030-5/Humanbody.m4a" />
+Your browser does not support audio.
+</audio>
+<input style="position:absolute;left:600px;top:145px" type="text" data-correct="Skull" data-start="0.5" data-duration="1500" />
+<input style="position:absolute;left:277px;top:255px" type="text" data-correct="Clavicle" data-start="2.5" data-duration="1500" />
+<input style="position:absolute;left:250px;top:325px" type="text" data-correct="Scapula" data-start="4.5" data-duration="1500" />
+<input style="position:absolute;left:590px;top:270px" type="text" data-correct="Mandible" data-start="6.5" data-duration="1500" />
+<input style="position:absolute;left:750px;top:380px" type="text" data-correct="Rib" data-start="8.5" data-duration="1500" />
+<input style="position:absolute;left:680px;top:475px" type="text" data-correct="Sternum" data-start="11" data-duration="1500" />
+<input style="position:absolute;left:255px;top:465px" type="text" data-correct="Humerus" data-start="13" data-duration="1500" />
+<input style="position:absolute;left:200px;top:580px" type="text" data-correct="Ulna" data-start="15" data-duration="1500" />
+<input style="position:absolute;left:195px;top:690px" type="text" data-correct="Radius" data-start="17" data-duration="1500" />
+<input style="position:absolute;left:165px;top:750px" type="text" data-correct="Wrist" data-start="19" data-duration="1500" />
+<input style="position:absolute;left:150px;top:810px" type="text" data-correct="Metacarpal Bones" data-start="21" data-duration="1500" />
+<input style="position:absolute;left:240px;top:881px" type="text" data-correct="Phalanges" data-start="24" data-duration="1500" />
+<input style="position:absolute;left:686px;top:605px" type="text" data-correct="Vertebrae" data-start="26" data-duration="1500" />
+<input style="position:absolute;left:733px;top:665px" type="text" data-correct="Pelvis" data-start="28" data-duration="1500" />
+<input style="position:absolute;left:710px;top:925px" type="text" data-correct="Femur" data-start="30" data-duration="1500" />
+<input style="position:absolute;left:710px;top:1045px" type="text" data-correct="Patella" data-start="32" data-duration="1500" />
+<input style="position:absolute;left:710px;top:1155px" type="text" data-correct="Tibia" data-start="33" data-duration="1500" />
+<input style="position:absolute;left:715px;top:1195px" type="text" data-correct="Fibula" data-start="35" data-duration="1500" />
+<input style="position:absolute;left:350px;top:1307px" type="text" data-correct="Tarsals" data-start="37" data-duration="1500" />
+<input style="position:absolute;left:340px;top:1340px" type="text" data-correct="Metetarsals" data-start="39" data-duration="1500" />
+<input style="position:absolute;left:290px;top:1370px" type="text" data-correct="Phalanges" data-start="41" data-duration="1500" />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+ <script id="rendered-js">
+console.clear();
+
+var aud = document.getElementById("myAudio");
+
+$("input").change(onChange);
+function onChange(evt) {
+  let correct = $(this).data("correct");
+  let answer = $(this).val();
+  console.log(correct, answer);
+  if (correct.toLowerCase() == answer.toLowerCase()) {
+    $(this).removeClass("incorrect").addClass("correct");
+  } else {
+    $(this).removeClass("correct").addClass("incorrect");
+  }
+
+  let start = $(this).data("start");
+  if(!start) return;
+  let duration = $(this).data("duration");
+  if(!duration) return;
+  console.log(start, duration);
+  aud.currentTime = start;
+  aud.play();
+  setTimeout(function () {
+    aud.pause();
+  }, duration);
+}
+    </script>
+</body>
+</html>
